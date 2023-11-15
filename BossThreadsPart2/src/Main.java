@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Main
 {
     static AtomicInteger total = new AtomicInteger(0);
-    static long startTime;
+    static long startTime = System.currentTimeMillis();
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(100);
         ArrayList<Future<Integer>> futures = new ArrayList<>();
@@ -30,7 +30,9 @@ public class Main
         {
             total.getAndAdd((Integer) future.get());
         }
+        System.out.println(System.currentTimeMillis() - startTime);
         System.out.println(total.get());
+
 
 
     }
